@@ -31,8 +31,13 @@ own code changes. The prebuilt path needs Docker Compose 2.24 or newer.
 Open the base URL. The first account you create becomes the owner, and
 self-service signup closes after that.
 
-The container listens on port 4788 over plain HTTP. Keep it on your LAN or
-tailnet, or put a TLS reverse proxy in front before exposing it publicly.
+The prebuilt deploy binds port 4788 to `127.0.0.1` only. Publish it on the
+tailnet over HTTPS with Tailscale Serve, and set `EXECUTOR_WEB_BASE_URL` to the
+resulting `https://<machine>.<tailnet>.ts.net` address:
+
+```sh
+tailscale serve --bg 4788
+```
 
 ## Connect an agent
 
