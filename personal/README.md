@@ -23,6 +23,11 @@ are rejected when it does not match. Everything else is optional.
 ./personal/deploy.sh
 ```
 
+This pulls upstream's prebuilt image (`linux/arm64` and `amd64`). Building from
+source inside Docker installs the whole monorepo and can take a very long time
+on a Mac, so only use `./personal/deploy.sh --build` once this fork carries its
+own code changes. The prebuilt path needs Docker Compose 2.24 or newer.
+
 Open the base URL. The first account you create becomes the owner, and
 self-service signup closes after that.
 
