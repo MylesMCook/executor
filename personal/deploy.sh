@@ -1,13 +1,19 @@
 #!/usr/bin/env sh
-# Pull this fork, rebuild the self-host image, restart it, and wait until healthy.
-# Run on the server from anywhere inside the clone: ./personal/deploy.sh
+# Pull this fork, start the self-host container, and wait until healthy.
+# Run on the server from anywhere inside the clone:
+#   ./personal/deploy.sh          use upstream's prebuilt image (fast)
+#   ./personal/deploy.sh --build  build the image from this fork's source
 set -eu
 
 cd "$(dirname "$0")/.."
 git pull --ff-only
 
 cd apps/host-selfhost
-docker compose up -d --build
+if [ "${1:-}" = "--build" ]; then
+  docker compose up -d --build
+else
+  docker compose -f docker-compose.yml -f ../../personal/compose.prebuilt.yml up -d
+fi
 
 i=0
 until curl -fsS http://127.0.0.1:4788/api/health >/dev/null 2>&1; do

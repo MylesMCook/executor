@@ -1,0 +1,7 @@
+# Run upstream's published image instead of building from source.
+# deploy.sh layers this over apps/host-selfhost/docker-compose.yml by default.
+services:
+  executor:
+    build: !reset null
+    image: ghcr.io/usefulsoftwareco/executor-selfhost:${EXECUTOR_IMAGE_TAG:-latest}
+    pull_policy: always
