@@ -33,16 +33,16 @@ self-service signup closes after that.
 
 The prebuilt deploy binds port 4788 to `127.0.0.1` only. Publish it on the
 tailnet over HTTPS on its own port with Tailscale Serve, and set
-`EXECUTOR_WEB_BASE_URL` to `https://<machine>.<tailnet>.ts.net:8443`:
+`EXECUTOR_WEB_BASE_URL` to `https://<machine>.<tailnet>.ts.net:8788`:
 
 ```sh
-tailscale serve --bg --https=8443 http://127.0.0.1:4788
+tailscale serve --bg --https=8788 http://127.0.0.1:4788
 ```
 
 ## Connect an agent
 
 ```sh
-npx add-mcp https://<machine>.<tailnet>.ts.net:8443/mcp --transport http --name executor
+npx add-mcp https://<machine>.<tailnet>.ts.net:8788/mcp --transport http --name executor
 ```
 
 The **Connect** card in the web UI shows the exact command.
