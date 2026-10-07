@@ -75,3 +75,8 @@ docker compose start
 
 The volume also holds the generated session secret and encryption keys, so
 treat backups as secrets.
+
+## v2 beta
+
+The v2 beta runs next to this deployment as a separate container. See
+[v2.md](v2.md).
